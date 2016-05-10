@@ -9,7 +9,7 @@
    */
   display: flex;
   flex-flow: row;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .site-navigation a {
@@ -24,7 +24,6 @@
 .site-navigation a:hover {
   background: #d4d4d4;
 }
-
 
 
 .page
@@ -67,22 +66,6 @@
 .body {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
-.h1 {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.h3 {
-  margin-top: 0;
-  font-weight: 300;
-}
-
-.container {
-  width: 40em;
-  margin: 10px auto;
-}
-
 
 .ac-label {
   font-weight: 700;

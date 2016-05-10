@@ -17,8 +17,8 @@
       </ul>
     </nav>
   </header>
-  <aside class="left-sidebar">
 
+  <aside class="left-sidebar">
     <div class="ac">
 
       <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" />
