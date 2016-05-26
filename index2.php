@@ -23,7 +23,7 @@
   <aside class="left-sidebar">
     <div class="ac">
 
-      <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" />
+      <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" checked />
       <label class="ac-label" for="ac-1">Item 1</label>
 
       <article class="ac-text">
@@ -46,7 +46,7 @@
 
     <div class="ac">
 
-      <input class="ac-input" id="ac-4" name="ac-4" type="checkbox" />
+      <input class="ac-input" id="ac-4" name="ac-4" type="checkbox" checked/>
       <label class="ac-label" for="ac-4">Item 2</label>
 
       <article class="ac-text">

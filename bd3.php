@@ -1,15 +1,15 @@
 <?php
 
-$hostname = 'localhost';
+$hostname = '192.168.120.9:3306';
 
-$username = 'root';
+$username = 'Fabricio';
 
-$password = '';
+$password = 'Sira2013';
 
 
     $dbh = new PDO("mysql:host=$hostname;dbname=patrimonio", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-    $sql = "SELECT descripcion FROM pat_tipo_bien";
+    $sql = "SELECT descripcion FROM ite_clase_item";
 
     $stmt = $dbh->prepare($sql);
 
