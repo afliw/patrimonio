@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <link rel="stylesheet" href="css/app2.css">
- 
+ https://scotch.io/tutorials/sort-and-filter-a-table-using-angular
 
  <style>
    body { padding-top:50px; }
