@@ -2,7 +2,6 @@
 <html lang="en">
  <link rel="stylesheet" href="css/app2.css">
 
-
  <style>
    body { padding-top:50px; }
  </style>
