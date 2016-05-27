@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
  <link rel="stylesheet" href="css/app2.css">
+
+
+ <style>
+   body { padding-top:50px; }
+ </style>
  <script src="bower_components/angular/angular.min.js"></script>
  <script type="text/javascript" src="js/class.js"></script>
-
+ 
  <body>
-
-
-<div class="page">
-  <header class="site-header" ng-app="MyApp">
+<div class="page" ng-app="MyApp">
+  <header class="site-header">
     <div ng-controller="GetItems">
     <nav class="site-navigation">
       <ul>
@@ -65,14 +68,42 @@
 
     </div><!--/ac-->
    </aside>
-  <section class="main-content"></section>
-  <aside class="right-sidebar">
+  <section class="main-content">
 
+    <div class="my-grid" ng-controller="mainController">
 
+      <table class="table table-bordered table-striped">
 
-  
-  </aside>
-  <footer class="site-footer">Footer</footer>
+        <thead>
+        <tr>
+          <td>
+            Sushi Roll
+          </td>
+          <td>
+            Fish Type
+          </td>
+          <td>
+            Taste Level
+          </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="roll in sushi">
+          <td>{{ roll.name }}</td>
+          <td>{{ roll.fish }}</td>
+          <td>{{ roll.tastiness }}</td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+  <aside class="right-sidebar">  </aside>
+  <footer class="site-footer"> </footer>
 </div>
 
 
