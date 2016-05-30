@@ -1,33 +1,33 @@
 <?php
 
-$hostname = 'localhost';
+$hostname = '192.168.120.9';
 
-$username = 'root';
+$username = 'Fabricio';
 
-$password = '';
+$password = 'Sira2013';
 
 
 $dbh = new PDO("mysql:host=$hostname;dbname=patrimonio", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-$sql = "set @aux =CONCAT('',(SELECT CONCAT('select te.descripcion, ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when te.descripcion = \'', te.descripcion, '\' then 1 else 0 end) ', te.descripcion))),', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when  e.equ_ram = \'', e.equ_ram, '\' then 1 else 0 end) ', e.equ_ram, 'RAM'))), ', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when e.equ_procesador = \'', e.equ_procesador, '\' then 1 else 0 end) ', e.equ_procesador))),', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when e.equ_disco_capacidad = \'', e.equ_disco_capacidad, '\' then 1 else 0 end) ', e.equ_disco_capacidad, 'GB'))),', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when e.equ_monitor_pulgadas = \'', e.equ_monitor_pulgadas, '\' then 1 else 0 end) ', e.equ_monitor_pulgadas, 'p'))),', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when ti.descripcion = \'', ti.descripcion, '\' then 1 else 0 end) ', ti.descripcion))),', ',
-GROUP_CONCAT(DISTINCT(concat(' sum(case when m.descripcion = \'', m.descripcion, '\' then 1 else 0 end) ', m.descripcion))),
-' FROM equ_equipo e
-LEFT JOIN equ_tipo_equipo te ON e.id_tipo_equipo = te.id_tipo_equipo
-LEFT JOIN equ_tipo_impresora ti ON e.id_tipo_impresora = ti.id_tipo_impresora
-LEFT JOIN equ_marca m ON e.id_marca = m.id_marca
-group by 1')
-FROM equ_equipo e
-LEFT JOIN equ_tipo_equipo te ON e.id_tipo_equipo = te.id_tipo_equipo
-LEFT JOIN equ_tipo_impresora ti ON e.id_tipo_impresora = ti.id_tipo_impresora
-LEFT JOIN equ_marca m ON e.id_marca = m.id_marca));
-PREPARE stmt_name FROM @aux;
-EXECUTE stmt_name;";
+$sql = "SELECT
+i.nro_expediente,
+i.decreto,
+i.precio,
+i.comentarios,
+i.foto,
+its.descripcion as descripcion1,
+ies.descripcion as descripcion2,
+ipa.dscripcion as descripcion3,
+ici.descripcion as descripcion4,
+iti.descripcion as descripcion5
+FROM
+ite_item i
+INNER JOIN ite_sector its ON i.id_sector = its.id_sector
+INNER JOIN ite_estado ies ON i.id_estado = ies.id_estado
+INNER JOIN ite_partida ipa ON i.id_partida = ipa.id_partida
+INNER JOIN ite_tipo_adquisicion ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
+INNER JOIN ite_clase_item ici ON i.id_clase_item = ici.id_clase_item
+INNER JOIN ite_tipo_item iti ON i.id_tipo_item = iti.id_tipo_item";
 
 $stmt = $dbh->prepare($sql);
 

@@ -31,7 +31,7 @@
   background: #eee;
   display: flex;
   flex-wrap: wrap;
-  font: 18px Helvetica;
+  font: 16px Helvetica;
 }
 
 .site-header,
@@ -55,8 +55,8 @@
 
 .main-content
 {
-  width: 60%;
-  height: 750px;
+  width:80%;
+  height: auto;
   background: #FFF;
   text-align: center;
 }
@@ -64,7 +64,7 @@
 
 
 .body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 .ac-label {
@@ -108,7 +108,6 @@
   display: none;
 }
 
-
 .ac-text, .ac-sub-text {
   opacity: 0;
   height: 0;
@@ -121,7 +120,6 @@
   opacity: 1;
   height: auto;
 }
-
 
 .ac-sub .ac-label {
   background: none;
@@ -147,6 +145,27 @@
 .ac-sub-text {
   padding: 0 1em 0 2em;
 }
+
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #afa09d;
+  color: white;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2}
+
+.table tr:hover {background-color: #ddd;}
 
 
 @media only screen and (max-width: 320px) 
@@ -175,7 +194,7 @@
     order: 5;
   }
 }
- 
+
 @media all and (max-width: 600px) {
   .site-navigation ul {
     /**
@@ -185,9 +204,4 @@
     padding: 0;
   }
 }
-
-
-.my-grid{
- background-color: #E9E9EA;
-margin-top: auto;  }
 

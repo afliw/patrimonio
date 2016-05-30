@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
  <link rel="stylesheet" href="css/app2.css">
- https://scotch.io/tutorials/sort-and-filter-a-table-using-angular
-
- <style>
-   body { padding-top:50px; }
- </style>
  <script src="bower_components/angular/angular.min.js"></script>
  <script type="text/javascript" src="js/class.js"></script>
- 
+
  <body>
-<div class="page" ng-app="MyApp">
+ <div class="page" ng-app="MyApp">
   <header class="site-header">
     <div ng-controller="GetItems">
-    <nav class="site-navigation">
-      <ul>
-        <li ng-repeat="item in items">
-          <a href="">{{item.descripcion}}</a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="site-navigation">
+        <ul>
+          <li ng-repeat="item in items">
+            <a href="">{{item.descripcion}}</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <aside class="left-sidebar">
-    <div class="ac">
+  <aside class="left-sidebar" ng-controller="getTipoItems">
 
-      <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" checked />
-      <label class="ac-label" for="ac-1">Item 1</label>
+    <div class="ac" ng-repeat="item in tipoItem" ng-controller="getPropiedades">
 
-      <article class="ac-text">
+      <input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox" checked  />
+      <label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}} - ({{item.Cantidad}})</label>
 
-        <div class="ac-sub">
-          <input class="ac-input" id="ac-2" name="ac-2" type="checkbox" />
-          <label class="ac-label" for="ac-2">I love jelly donuts</label>
-        </div>
+      <article class="ac-text" ng-repeat="propiedad in propiedades"  ng-if="propiedad.id_tipo_item == item.id_tipo_item">
 
         <div class="ac-sub">
-          <input class="ac-input" id="ac-3" name="ac-3" type="checkbox" />
-          <label class="ac-label" for="ac-3">They are so delicious</label>
+          <input class="ac-input" id="ac-{{propiedad.id_valor_propiedad}}" name="ac-{{propiedad.id_valor_propiedad}}" type="checkbox" />
+          <label class="ac-label" for="ac-{{propiedad.id_valor_propiedad}}">{{propiedad.Propiedad}}</label>
+          <article class="ac-sub-text">sdfsd</article>
         </div>
 
       </article><!--/ac-text-->
@@ -46,54 +38,26 @@
     </div><!--/ac-->
 
 
-
-    <div class="ac">
-
-      <input class="ac-input" id="ac-4" name="ac-4" type="checkbox" checked/>
-      <label class="ac-label" for="ac-4">Item 2</label>
-
-      <article class="ac-text">
-
-        <div class="ac-sub">
-          <input class="ac-input" id="ac-5" name="ac-5" type="checkbox" />
-          <label class="ac-label" for="ac-5">I also love regular donuts</label>
-        </div>
-
-        <div class="ac-sub">
-          <input class="ac-input" id="ac-6" name="ac-6" type="checkbox" />
-          <label class="ac-label" for="ac-6">They are also delicious</label>
-        </div>
-
-      </article><!--/ac-text-->
-
-    </div><!--/ac-->
    </aside>
+
   <section class="main-content">
 
-    <div class="my-grid" ng-controller="mainController">
+    <div  ng-controller="getItems2" style="overflow-x:auto;">
 
-      <table class="table table-bordered table-striped">
+      <table class="table">
 
         <thead>
-        <tr>
-          <td>
-            Sushi Roll
-          </td>
-          <td>
-            Fish Type
-          </td>
-          <td>
-            Taste Level
-          </td>
-        </tr>
+          <tr>
+            <th ng-repeat="column in columns">
+              {{column.displayName}}
+            </th>
+          </tr>
         </thead>
 
         <tbody>
-        <tr ng-repeat="roll in sushi">
-          <td>{{ roll.name }}</td>
-          <td>{{ roll.fish }}</td>
-          <td>{{ roll.tastiness }}</td>
-        </tr>
+          <tr ng-repeat="item2 in items2">
+            <td ng-repeat="column in columns">{{item2[column.field]}}</td>
+          </tr>
         </tbody>
 
       </table>
@@ -102,7 +66,7 @@
 
   </section>
 
-  <aside class="right-sidebar">  </aside>
+  <!--<aside class="right-sidebar">  </aside>-->
   <footer class="site-footer"> </footer>
 </div>
 
