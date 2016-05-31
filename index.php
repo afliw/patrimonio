@@ -23,14 +23,14 @@
     <div class="ac" ng-repeat="item in tipoItem" ng-controller="getPropiedades">
 
       <input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox" checked  />
-      <label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}}  <span>{{item.Cantidad}}</span></label>
+      <label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}} - ({{item.Cantidad}})</label>
 
-      <article class="ac-text" ng-repeat="propiedad in propiedades | groupBy: columns.displayName" >
+      <article class="ac-text" ng-repeat="propiedad in propiedades"  ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
 
-        <div class="ac-sub"  ng-if="propiedad.id_tipo_item == item.id_tipo_item">
-          <input class="ac-input" id="ac-{{propiedad.id_valor_propiedad}}" name="ac-{{propiedad.id_valor_propiedad}}" type="checkbox" />
-          <label class="ac-label" for="ac-{{propiedad.id_valor_propiedad}}">{{propiedad.Propiedad }}</label>
-          <article class="ac-sub-text">sdfsd</article>
+        <div class="ac-sub" >
+          <input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}" type="checkbox"/>
+          <label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
+          <article class="ac-sub-text" ng-repeat="valor in valores" ng-if="valor.id_propiedad == propiedad.id_propiedad">{{valor.Valor}} - ({{valor.Cantidad}})</article>
         </div>
 
       </article><!--/ac-text-->
