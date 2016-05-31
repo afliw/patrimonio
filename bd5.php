@@ -18,9 +18,7 @@ $password = 'Sira2013';
     $sql = "SELECT
             Count(ivp.descripcion) AS Cantidad,
             ivp.descripcion AS Valor,
-            ip.descripcion AS Propiedad,
             ip.id_propiedad,
-            ivp.id_valor_propiedad,
             ip.id_tipo_item
             FROM
             ite_propiedad ip

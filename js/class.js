@@ -50,10 +50,22 @@ app.controller("getTipoItems", function($scope, $http) {
 });
 
 app.controller("getPropiedades", function($scope, $http) {
-    $http.get('bd5.php').
+    $http.get('bd6.php').
     success(function(data) {
         console.log(data);
         $scope.propiedades = data;
+    }).
+    error(function(data) {
+        console.log(data);
+        // log error
+    });
+});
+
+app.controller("getValorPropiedades", function($scope, $http) {
+    $http.get('bd5.php').
+    success(function(data) {
+        console.log(data);
+        $scope.valores = data;
     }).
     error(function(data) {
         console.log(data);
