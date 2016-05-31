@@ -42,6 +42,12 @@ app.controller("getTipoItems", function($scope, $http) {
     success(function(data) {
         console.log(data);
         $scope.tipoItem = data;
+        $scope.columns = [{field: 'Cantidad', displayName: 'Cantidad'},
+            {field:'ivp.descripcion', displayName:'Valor'},
+            {field:'ip.descripcion', displayName:'Propiedad'},
+            {field:'ip.id_propiedad', displayName:'Id_propiedad'},
+            {field:' ivp.id_valor_propiedad', displayName:'id_valor'},
+            {field:'ip.id_tipo_item', displayName:'id_tipo_item'}];
     }).
     error(function(data) {
         console.log(data);
