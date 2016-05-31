@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <link rel="stylesheet" href="css/app2.css">
+ <link rel="stylesheet" href="css/app.css">
  <script src="bower_components/angular/angular.min.js"></script>
  <script type="text/javascript" src="js/class.js"></script>
 
@@ -20,9 +21,9 @@
 
   <aside class="left-sidebar" ng-controller="getTipoItems">
 
-    <div class="ac" ng-repeat="item in tipoItem" ng-controller="getPropiedades">
+  <div class="ac" ng-repeat="item in tipoItem" ng-controller="getPropiedades">
 
-      <input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox" checked  />
+      <input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox"   />
       <label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}} - ({{item.Cantidad}})</label>
 
       <article class="ac-text" ng-repeat="propiedad in propiedades"  ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
@@ -35,38 +36,56 @@
 
       </article><!--/ac-text-->
 
-    </div><!--/ac-->
+ </div><!--/ac-->
 
+      <!--<div class="menu">
+         <ul ng-repeat="item in tipoItem" ng-controller="getPropiedades">
+             <li class="block">
+                 <input type="checkbox" name="item{{item.id_tipo_item}}" id="item{{item.id_tipo_item}}" />
+                 <label for="item{{item.id_tipo_item}}"><i aria-hidden="true" class="icon-users"></i> {{item.descripcion}} <span>{{item.Cantidad}}</span></label>
+                 <ul class="options" ng-repeat="propiedad in propiedades"  ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
+                     <li>
+                         <a href="#"><i aria-hidden="true" class="icon-search"></i> {{propiedad.Propiedad}} </a>
+                             <ul  ng-repeat="valor in valores" ng-if="valor.id_propiedad == propiedad.id_propiedad">
+                                 <li>
+                                     <a href="#">{{valor.Valor}} - {{valor.Cantidad}} </a>
+                                 </li>
+                             </ul>
+                     </li>
+                 </ul>
+             </li>
+         </ul>
+     </div>-->
 
-   </aside>
+    </aside>
 
-  <section class="main-content">
+   <section class="main-content">
 
-    <div  ng-controller="getItems2" style="overflow-x:auto;">
+     <div  ng-controller="getItems2" style="overflow-x:auto;">
 
-      <table class="table">
+       <table class="table">
 
-        <thead>
-          <tr>
-            <th ng-repeat="column in columns">
-              {{column.displayName}}
-            </th>
-          </tr>
-        </thead>
+         <thead>
+           <tr>
+             <th ng-repeat="column in columns">
+               {{column.displayName}}
+             </th>
+           </tr>
+         </thead>
 
-        <tbody>
-          <tr ng-repeat="item2 in items2">
-            <td ng-repeat="column in columns">{{item2[column.field]}}</td>
-          </tr>
-        </tbody>
+         <tbody>
+           <tr ng-repeat="item2 in items2">
+             <td ng-repeat="column in columns">{{item2[column.field]}}</td>
+           </tr>
+         </tbody>
 
-      </table>
+       </table>
 
-    </div>
+     </div>
 
-  </section>
+   </section>
 
-  <!--<aside class="right-sidebar">  </aside>-->
+   <!--<aside class="right-sidebar">  </aside>-->
   <footer class="site-footer"> </footer>
 </div>
 

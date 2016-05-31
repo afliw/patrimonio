@@ -10,11 +10,11 @@ $password = 'Sira2013';
 $dbh = new PDO("mysql:host=$hostname;dbname=patrimonio", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 $sql = "SELECT
+i.foto,
 i.nro_expediente,
 i.decreto,
 i.precio,
 i.comentarios,
-i.foto,
 its.descripcion as descripcion1,
 ies.descripcion as descripcion2,
 ipa.dscripcion as descripcion3,

@@ -5,15 +5,15 @@ app.controller("getItems2", function($scope, $http) {
         then(function(response) {
         console.log(response.data);
         $scope.items2 = response.data;
-        $scope.columns = [{field: 'nro_expediente', displayName: 'N° Expediente'},
-                           {field:'decreto', displayName:'Decreto'},
-                            {field:'comentarios', displayName:'Comentarios'},
-                            {field:'foto', displayName:'Foto'},
-                            {field:'descripcion1', displayName:'Sector'},
-                            {field:'descripcion2', displayName:'Estado'},
-                            {field:'descripcion3', displayName:'Partida'},
-                            {field:'descripcion4', displayName:'Clase Item'},
-                            {field:'descripcion5', displayName:'Tipo Item'}];
+        $scope.columns = [{field:'foto', displayName:'Foto'},
+                          {field: 'nro_expediente', displayName: 'N° Expediente'},
+                          {field:'decreto', displayName:'Decreto'},
+                          {field:'comentarios', displayName:'Comentarios'},
+                          {field:'descripcion1', displayName:'Sector'},
+                          {field:'descripcion2', displayName:'Estado'},
+                          {field:'descripcion3', displayName:'Partida'},
+                          {field:'descripcion4', displayName:'Clase Item'},
+                          {field:'descripcion5', displayName:'Tipo Item'}];
 
     })/*.
     error(function(response) {
