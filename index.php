@@ -75,7 +75,9 @@
 
          <tbody>
            <tr ng-repeat="item2 in items2">
-             <td ng-repeat="column in columns">{{item2[column.field]}}</td>
+             <td ng-repeat="column in columns" ng-if="column.field == 'foto'"><img width="50px" ng-src={{item2[column.field]}} lazy-src></td>
+             <td ng-repeat="column in columns" ng-if="column.field != 'foto'">{{item2[column.field]}}</td>
+
            </tr>
          </tbody>
 
