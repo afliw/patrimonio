@@ -25,7 +25,7 @@ app.controller("getItems2", function($scope, $http) {
 
 
 app.controller("GetItems", function($scope, $http) {
-    $http.get('bd3.php').
+    $http.get('Modelos/menuModel.php?action=selectClaseItem&params=').
     success(function(data) {
         console.log(data);
         $scope.items = data;
