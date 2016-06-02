@@ -8,9 +8,9 @@ app.controller("getItems2", function ($scope, $http) {
             e.Foto = "img/"+e.Foto;
         });
         $scope.items2 = response.data;
-        for(var k in response.data[0]){
-            $scope.columns.push({field:k,displayName:k});
-        }
+        //for(var k in response.data[0]){
+        //    $scope.columns.push({field:k,displayName:k});
+        //}
     }, function (err) {
         console.log(err);
         // log error

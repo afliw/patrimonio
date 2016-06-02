@@ -63,16 +63,18 @@
 
 				<thead>
 				<tr>
-					<th ng-repeat="column in columns">
-						{{column.displayName}}
+					<th ng-repeat="(key, value) in items2[0]">
+						{{key}}
 					</th>
 				</tr>
 				</thead>
 
 				<tbody>
 				<tr ng-repeat="item2 in items2">
-					<td ng-repeat="column in columns" ng-if="column.field == 'Foto'"><img width="50px" ng-src={{item2[column.field]}} lazy-src></td>
-					<td ng-repeat="column in columns" ng-if="column.field != 'Foto'">{{item2[column.field]}}</td>
+					<td ng-repeat="(key,value) in item2">
+						<img width="50px" ng-if="key == 'Foto'" ng-src="{{value}}" lazy-src/>
+						<span ng-if="key != 'Foto'">{{value}}</span>
+					</td>
 				</tr>
 				</tbody>
 
