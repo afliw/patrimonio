@@ -26,9 +26,8 @@ app.controller("getItems2", function ($scope, $http) {
 
 app.controller("GetItems", function ($scope, $http) {
     $http.get('main/selectClaseItem').
-    then(function (data) {
-        //console.log(data);
-        $scope.items = data;
+    then(function (response) {
+        $scope.items = response.data;
     }, function (err) {
         console.log(err);
         // log error
@@ -37,9 +36,9 @@ app.controller("GetItems", function ($scope, $http) {
 
 app.controller("getTipoItems", function ($scope, $http) {
     $http.get('main/getTipoItems').
-    then(function (data) {
+    then(function (response) {
         //console.log(data);
-        $scope.tipoItem = data;
+        $scope.tipoItem = response.data;
         $scope.columns = [{field: 'Cantidad', displayName: 'Cantidad'},
             {field: 'ivp.descripcion', displayName: 'Valor'},
             {field: 'ip.descripcion', displayName: 'Propiedad'},
@@ -54,9 +53,9 @@ app.controller("getTipoItems", function ($scope, $http) {
 
 app.controller("getPropiedades", function ($scope, $http) {
     $http.get('main/getPropiedades').
-    then(function (data) {
+    then(function (response) {
         //console.log(data);
-        $scope.propiedades = data;
+        $scope.propiedades = response.data;
     }, function (err) {
         console.log(err);
         // log error
@@ -65,9 +64,9 @@ app.controller("getPropiedades", function ($scope, $http) {
 
 app.controller("getValorPropiedades", function ($scope, $http) {
     $http.get('main/getValorPropiedades').
-    then(function (data) {
+    then(function (response) {
         //console.log(data);
-        $scope.valores = data;
+        $scope.valores = response.data;
     }, function (err) {
         console.log(err);
         // log error
