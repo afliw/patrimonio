@@ -3,21 +3,14 @@ var app = angular.module("MyApp", []);
 app.controller("getItems2", function ($scope, $http) {
     $http.get('main/getItems2').
     then(function (response) {
-        //console.log(response.data);
+        $scope.columns = [];
         response.data.forEach(function(e){
-            e.foto = "img/"+e.foto;
+            e.Foto = "img/"+e.Foto;
         });
         $scope.items2 = response.data;
-        $scope.columns = [{field: 'foto', displayName: 'Foto'},
-            {field: 'nro_expediente', displayName: 'N° Expediente'},
-            {field: 'decreto', displayName: 'Decreto'},
-            {field: 'comentarios', displayName: 'Comentarios'},
-            {field: 'descripcion1', displayName: 'Sector'},
-            {field: 'descripcion2', displayName: 'Estado'},
-            {field: 'descripcion3', displayName: 'Partida'},
-            {field: 'descripcion4', displayName: 'Clase Item'},
-            {field: 'descripcion5', displayName: 'Tipo Item'}];
-
+        for(var k in response.data[0]){
+            $scope.columns.push({field:k,displayName:k});
+        }
     }, function (err) {
         console.log(err);
         // log error
