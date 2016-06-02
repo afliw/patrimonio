@@ -18,7 +18,7 @@ abstract class Model{
         $parsedAttributes = $this->parseAttributesForUpdate();
         if(!$parsedAttributes) return false;
         $query = "UPDATE client SET " . $parsedAttributes;
-        return DB::Write($query);
+        return SDB::Write($query);
     }
     
     private function getRecordFromId($id){

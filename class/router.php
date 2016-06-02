@@ -28,7 +28,6 @@ class Router {
     }
 
     public static function UnknownResource(){
-        var_dump(Trace::GetLastMethodCall());
         include(CFG_ROUTER_404_FILE);
         exit;
     }

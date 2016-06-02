@@ -33,8 +33,11 @@ class Controller {
 
     private static function includeModel($mName){
         $modelPath = "model/{$mName}.php";
-        if(file_exists($modelPath))
+        if(file_exists($modelPath)){
+            include_once("./class/sdb.php");
             include_once($modelPath);
+        }
+
     }
 
     private static function verifyController($cFullURI){
