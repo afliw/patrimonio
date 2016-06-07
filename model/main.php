@@ -67,7 +67,7 @@ class Main {
 
 class Menu {
   public static function GetItemClasses(){
-    $result = SDB::Read("SELECT descripcion FROM ite_clase_item");
+    $result = SDB::Read("SELECT id_clase_item as `id`,descripcion FROM ite_clase_item");
     return $result;
   }
 }

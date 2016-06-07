@@ -1,10 +1,10 @@
-<div class="page" ng-app="MyApp" ng-controller="GetItems">
+<div class="page" ng-app="MyApp">
 	<header class="site-header">
-		<div>
+		<div ng-controller="GetItems as gi">
 			<nav class="site-navigation">
 				<ul>
-					<li ng-repeat="item in items" ng-click="tab=1">
-						<a href="">{{item.descripcion}}</a>
+					<li ng-repeat="item in gi.items">
+						<a href="" ng-click="gi.itemClicked(item.id)">{{item.descripcion}}</a>
 					</li>
 				</ul>
 			</nav>
