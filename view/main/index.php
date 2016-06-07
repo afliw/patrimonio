@@ -1,9 +1,9 @@
-<div class="page" ng-app="MyApp">
+<div class="page" ng-app="MyApp" ng-controller="GetItems">
 	<header class="site-header">
-		<div ng-controller="GetItems">
+		<div>
 			<nav class="site-navigation">
 				<ul>
-					<li ng-repeat="item in items">
+					<li ng-repeat="item in items" ng-click="tab=1">
 						<a href="">{{item.descripcion}}</a>
 					</li>
 				</ul>

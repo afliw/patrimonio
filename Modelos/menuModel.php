@@ -11,7 +11,7 @@ function selectClaseItem()
 {
     require "../connection.php";
     $db = new PDO('mysql:host=' . $servidor . ';dbname=' . $bd, $usuario, $contrasenia, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-    $stmt = $db->prepare("SELECT descripcion FROM ite_clase_item");
+    $stmt = $db->prepare("SELECT descripcion, id_clase_item FROM ite_clase_item");
     $stmt->execute();
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

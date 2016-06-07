@@ -1,31 +1,29 @@
 var app = angular.module("MyApp", []);
 
-app.controller("getItems2", function ($scope, $http) {
-    $http.get('main/getItems2').
-    then(function (response) {
-        $scope.columns = [];
-        response.data.forEach(function(e){
-            e.Foto = "img/"+e.Foto;
-        });
-        $scope.items2 = response.data;
-        //for(var k in response.data[0]){
-        //    $scope.columns.push({field:k,displayName:k});
-        //}
-    }, function (err) {
-        console.log(err);
-        // log error
-    });
-});
-
 app.controller("GetItems", function ($scope, $http) {
     $http.get('main/selectClaseItem').
     then(function (response) {
         $scope.items = response.data;
     }, function (err) {
         console.log(err);
-        // log error
     });
 });
+
+app.controller("getItems2", function ($scope, $http) {
+    $http.get('main/getItems2?idClase=1').
+    then(
+        function (response) {
+        $scope.columns = [];
+        response.data.forEach(function(e){
+            e.Foto = "img/"+e.Foto;
+        });
+        $scope.items2 = response.data;
+    }, function (err) {
+        console.log(err);
+    });
+});
+
+
 
 app.controller("getTipoItems", function ($scope, $http) {
     $http.get('main/getTipoItems').
@@ -40,7 +38,6 @@ app.controller("getTipoItems", function ($scope, $http) {
             {field: 'ip.id_tipo_item', displayName: 'id_tipo_item'}];
     }, function (err) {
         console.log(err);
-        // log error
     });
 });
 
@@ -51,7 +48,6 @@ app.controller("getPropiedades", function ($scope, $http) {
         $scope.propiedades = response.data;
     }, function (err) {
         console.log(err);
-        // log error
     });
 });
 
@@ -62,6 +58,5 @@ app.controller("getValorPropiedades", function ($scope, $http) {
         $scope.valores = response.data;
     }, function (err) {
         console.log(err);
-        // log error
     });
 });
