@@ -17,8 +17,8 @@ function selectClaseItem(){
 	echo json_encode($itemClasses);
 }
 
-function getTipoItems(){
-	$tiposItem = Main::GetItemTypes();
+function getTipoItems($idClase){
+	$tiposItem = Main::GetItemTypes($idClase);
 	header('Content-Type: application/json');
 	echo json_encode($tiposItem);
 }

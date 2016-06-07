@@ -1,7 +1,7 @@
 <?php
 
 class Main {
-  public static function GetItemTypes(){
+  public static function GetItemTypes($idClase){
     $result = SDB::Read("SELECT
             it.id_tipo_item,
             iti.descripcion,
@@ -9,6 +9,7 @@ class Main {
             FROM
             ite_item it
             INNER JOIN ite_tipo_item iti ON it.id_tipo_item = iti.id_tipo_item
+            WHERE it.id_clase_item = " . $idClase . "
             group by 2");
     return $result;
   }

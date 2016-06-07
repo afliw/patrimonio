@@ -1,6 +1,6 @@
 var app = angular.module("MyApp", []);
 
-app.controller("getItems2", function ($scope, $http,$rootScope) {
+app.controller("getItems2", function ($scope, $http, $rootScope) {
     var gi2 = this;
     $rootScope.$on("itemClicked",function(event,id){
         console.log(id);
@@ -26,6 +26,28 @@ app.controller("getItems2", function ($scope, $http,$rootScope) {
     this.getItems(1);
 });
 
+app.controller("getTipoItems", function ($scope, $http, $rootScope) {
+    var gi3 = this;
+
+    $rootScope.$on("itemClicked",function(event,id){
+        console.log(id);
+        gi3.getTipoItems(id);
+    });
+
+    this.getTipoItems = function(idClase){
+        $http.get('main/getTipoItems?idClase='+idClase).
+        then(function (response) {
+            $scope.columns = [];
+            $scope.tipoItem = response.data;
+        }, function (err) {
+            console.log(err);
+            // log error
+        });
+    };
+    this.getTipoItems(1);
+});
+
+
 app.controller("GetItems", function ($rootScope, $http) {
     var gi = this;
     gi.itemClicked = function(id){
@@ -40,22 +62,7 @@ app.controller("GetItems", function ($rootScope, $http) {
     });
 });
 
-app.controller("getTipoItems", function ($scope, $http) {
-    $http.get('main/getTipoItems').
-    then(function (response) {
-        //console.log(data);
-        $scope.tipoItem = response.data;
-        $scope.columns = [{field: 'Cantidad', displayName: 'Cantidad'},
-            {field: 'ivp.descripcion', displayName: 'Valor'},
-            {field: 'ip.descripcion', displayName: 'Propiedad'},
-            {field: 'ip.id_propiedad', displayName: 'Id_propiedad'},
-            {field: ' ivp.id_valor_propiedad', displayName: 'id_valor'},
-            {field: 'ip.id_tipo_item', displayName: 'id_tipo_item'}];
-    }, function (err) {
-        console.log(err);
-        // log error
-    });
-});
+
 
 app.controller("getPropiedades", function ($scope, $http) {
     $http.get('main/getPropiedades').
