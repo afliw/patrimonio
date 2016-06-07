@@ -35,8 +35,8 @@ function getValorPropiedades(){
 	echo json_encode($propertiesValues);
 }
 
-function getItems2(){
-	$items = Main::GetItems();
+function getItems2($idClase){
+	$items = Main::GetItems($idClase);
 	header('Content-Type: application/json');
 	echo json_encode($items);
 }

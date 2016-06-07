@@ -40,7 +40,7 @@ class Main {
     return $result;
   }
 
-  public static function GetItems(){
+  public static function GetItems($idClase){
     $result = SDB::Read("SELECT
               i.foto as `Foto`,
               i.nro_expediente as `N° Expediente`,
@@ -59,14 +59,15 @@ class Main {
               INNER JOIN ite_partida ipa ON i.id_partida = ipa.id_partida
               INNER JOIN ite_tipo_adquisicion ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
               INNER JOIN ite_clase_item ici ON i.id_clase_item = ici.id_clase_item
-              INNER JOIN ite_tipo_item iti ON i.id_tipo_item = iti.id_tipo_item");
+              INNER JOIN ite_tipo_item iti ON i.id_tipo_item = iti.id_tipo_item
+              WHERE i.id_clase_item = " . $idClase);
     return $result;
   }
 }
 
 class Menu {
   public static function GetItemClasses(){
-    $result = SDB::Read("SELECT descripcion FROM ite_clase_item");
+    $result = SDB::Read("SELECT id_clase_item as `id`,descripcion FROM ite_clase_item");
     return $result;
   }
 }
