@@ -23,6 +23,12 @@ function getTipoItems($idClase){
 	echo json_encode($tiposItem);
 }
 
+function getItems2($idClase){
+	$items = Main::GetItems($idClase);
+	header('Content-Type: application/json');
+	echo json_encode($items);
+}
+
 function getPropiedades(){
 	$properties = Main::GetProperties();
 	header('Content-Type: application/json');
@@ -35,8 +41,3 @@ function getValorPropiedades(){
 	echo json_encode($propertiesValues);
 }
 
-function getItems2($idClase){
-	$items = Main::GetItems($idClase);
-	header('Content-Type: application/json');
-	echo json_encode($items);
-}

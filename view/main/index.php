@@ -30,9 +30,9 @@
 					</article>
 				</div>
 
-			</article><!--/ac-text-->
+			</article>
 
-		</div><!--/ac-->
+		</div>
 
 		<!--<div class="menu">
 		   <ul ng-repeat="item in tipoItem" ng-controller="getPropiedades">
@@ -57,7 +57,19 @@
 
 	<section class="main-content">
 
+
+
 		<div ng-controller="getItems2" style="overflow-x:auto;">
+
+			<form>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-search"></i></div>
+						<input type="text" class="form-control" placeholder="buscar..." ng-model="search">
+					</div>
+				</div>
+			</form>
+
 
 			<table class="table">
 
@@ -70,10 +82,11 @@
 				</thead>
 
 				<tbody>
-				<tr ng-repeat="item2 in items2">
-					<td ng-repeat="(key,value) in item2">
-						<img width="50px" ng-if="key == 'Foto'" ng-src="{{value}}" lazy-src/>
-						<span ng-if="key != 'Foto'">{{value}}</span>
+				<tr ng-repeat="item2 in items2 | filter:search">
+					<td ng-repeat="ite in item2" >
+						<img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
+						<span ng-if="$index != 0 && $index !=3">{{ite}}</span>
+						<span ng-if="$index == 3">{{ite | currency}}</span>
 					</td>
 				</tr>
 				</tbody>

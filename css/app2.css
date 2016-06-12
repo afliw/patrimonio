@@ -211,6 +211,11 @@
   }
 }
 
+.search
+{
+  content: url(../img/search.png);
+}
+
 @media all and (max-width: 600px) {
   .site-navigation ul {
     /**

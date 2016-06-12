@@ -10,14 +10,14 @@ app.controller("getItems2", function ($scope, $http, $rootScope) {
     this.getItems = function(idClase){
         $http.get('main/getItems2?idClase='+idClase).
         then(function (response) {
-            $scope.columns = [];
             response.data.forEach(function(e){
                 e.Foto = "img/"+e.Foto;
             });
+
+            $scope.items2 = [];
             $scope.items2 = response.data;
-            //for(var k in response.data[0]){
-            //    $scope.columns.push({field:k,displayName:k});
-            //}
+
+
         }, function (err) {
             console.log(err);
             // log error
@@ -37,7 +37,6 @@ app.controller("getTipoItems", function ($scope, $http, $rootScope) {
     this.getTipoItems = function(idClase){
         $http.get('main/getTipoItems?idClase='+idClase).
         then(function (response) {
-            $scope.columns = [];
             $scope.tipoItem = response.data;
         }, function (err) {
             console.log(err);
@@ -85,3 +84,4 @@ app.controller("getValorPropiedades", function ($scope, $http) {
         // log error
     });
 });
+

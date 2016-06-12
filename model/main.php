@@ -28,16 +28,18 @@ class Main {
 
   public static function GetPropertiesValues(){
     $result = SDB::Read("SELECT
-            Count(ivp.descripcion) AS Cantidad,
-            ivp.descripcion AS Valor,
-            ip.id_propiedad,
-            ip.id_tipo_item
-            FROM
-            ite_propiedad ip
-            INNER JOIN ite_valor_propiedad ivp ON ivp.id_propiedad = ip.id_propiedad
-            INNER JOIN aso_item_tprop aso ON aso.id_propiedad = ip.id_propiedad AND aso.id_valor_propiedad = ivp.id_valor_propiedad
-            group by 2
-            ORDER BY 3");
+                          Count(ivp.id_valor_propiedad) AS Cantidad,
+                          ivp.descripcion AS Valor,
+                          ip.id_propiedad,
+                          ivp.id_valor_propiedad,
+                          ip.id_tipo_item
+                          FROM
+                          ite_propiedad AS ip
+                          INNER JOIN ite_valor_propiedad AS ivp ON ivp.id_propiedad = ip.id_propiedad
+                          INNER JOIN aso_item_tprop AS aso ON aso.id_propiedad = ip.id_propiedad AND aso.id_valor_propiedad = ivp.id_valor_propiedad
+                          INNER JOIN ite_tipo_item iti ON ip.id_tipo_item = iti.id_tipo_item
+                          group by 4
+                          ORDER BY 3");
     return $result;
   }
 
