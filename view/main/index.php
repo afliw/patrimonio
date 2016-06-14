@@ -22,11 +22,10 @@
 			         ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
 
 				<div class="ac-sub">
-					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}"
-					       type="checkbox"/>
+					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}" type="checkbox"/>
 					<label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
 					<article class="ac-sub-text" ng-repeat="valor in valores"
-					         ng-if="valor.id_propiedad == propiedad.id_propiedad">{{valor.Valor}} - ({{valor.Cantidad}})
+					         ng-if="valor.id_propiedad == propiedad.id_propiedad ng-model="level3"">{{valor.Valor}} - ({{valor.Cantidad}})
 					</article>
 				</div>
 
@@ -65,7 +64,7 @@
 				<div class="form-group">
 					<div class="input-group">
 						<div class="input-group-addon"><i class="fa fa-search"></i></div>
-						<input type="text" class="form-control" placeholder="buscar..." ng-model="search">
+						<input type="text" class="inputS" placeholder="buscar..." ng-model="search">
 					</div>
 				</div>
 			</form>
