@@ -25,7 +25,7 @@
 					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}" type="checkbox"/>
 					<label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
 					<article class="ac-sub-text" ng-repeat="valor in valores"
-					         ng-if="valor.id_propiedad == propiedad.id_propiedad ng-model="level3"">{{valor.Valor}} - ({{valor.Cantidad}})
+					         ng-if="valor.id_propiedad == propiedad.id_propiedad" ng-model='level3'">{{valor.Valor}} - ({{valor.Cantidad}})
 					</article>
 				</div>
 
