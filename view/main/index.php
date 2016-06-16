@@ -11,21 +11,21 @@
 		</div>
 	</header>
 
-	<aside class="left-sidebar" ng-controller="getTipoItems">
+	<aside class="left-sidebar" ng-controller="leftSideMenu as lsb">
 
-		<div class="ac" ng-repeat="item in tipoItem" ng-controller="getPropiedades">
+		<div class="ac" ng-repeat="item in lsb.tipoItem">
 
 			<input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox"/>
 			<label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}} - ({{item.Cantidad}})</label>
 
-			<article class="ac-text" ng-repeat="propiedad in propiedades"
-			         ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
-
+			<article class="ac-text" ng-repeat="propiedad in lsb.propiedades" ng-if="propiedad.id_tipo_item == item.id_tipo_item">
 				<div class="ac-sub">
-					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}" type="checkbox"/>
+					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}"
+					       type="checkbox"/>
 					<label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
-					<article class="ac-sub-text" ng-repeat="valor in valores"
-					         ng-if="valor.id_propiedad == propiedad.id_propiedad" ng-model='level3'">{{valor.Valor}} - ({{valor.Cantidad}})
+					<article class="ac-sub-text" ng-repeat="valor in lsb.valores"
+					         ng-if="valor.id_propiedad == propiedad.id_propiedad" ng-model="level3">
+						{{valor.Valor}} - ({{valor.Cantidad}})
 					</article>
 				</div>
 
@@ -57,7 +57,6 @@
 	<section class="main-content">
 
 
-
 		<div ng-controller="getItems2" style="overflow-x:auto;">
 
 			<form>
@@ -82,7 +81,7 @@
 
 				<tbody>
 				<tr ng-repeat="item2 in items2 | filter:search">
-					<td ng-repeat="ite in item2" >
+					<td ng-repeat="ite in item2">
 						<img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
 						<span ng-if="$index != 0 && $index !=3">{{ite}}</span>
 						<span ng-if="$index == 3">{{ite | currency}}</span>

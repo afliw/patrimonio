@@ -26,27 +26,6 @@ app.controller("getItems2", function ($scope, $http, $rootScope) {
     this.getItems(1);
 });
 
-app.controller("getTipoItems", function ($scope, $http, $rootScope) {
-    var gi3 = this;
-
-    $rootScope.$on("itemClicked",function(event,id){
-        console.log(id);
-        gi3.getTipoItems(id);
-    });
-
-    this.getTipoItems = function(idClase){
-        $http.get('main/getTipoItems?idClase='+idClase).
-        then(function (response) {
-            $scope.tipoItem = response.data;
-        }, function (err) {
-            console.log(err);
-            // log error
-        });
-    };
-    this.getTipoItems(1);
-});
-
-
 app.controller("GetItems", function ($rootScope, $http) {
     var gi = this;
     gi.itemClicked = function(id){
@@ -61,27 +40,51 @@ app.controller("GetItems", function ($rootScope, $http) {
     });
 });
 
+app.controller("leftSideMenu", function($http,$rootScope){
+    var self = this;
+    this.propiedades = {};
+    this.valores = {};
+    this.tipoItem = {};
 
+    $rootScope.$on("itemClicked",function(event,id){
+        console.log(id);
+        self.getTipoItems(id);
+    });
 
-app.controller("getPropiedades", function ($scope, $http) {
+    this.getTipoItems = function(idClase){
+        $http.get('main/getTipoItems?idClase='+idClase).
+        then(function (response) {
+            self.tipoItem = response.data;
+        }, function (err) {
+            console.log(err);
+        });
+    };
+
+    this.getTipoItems(1);
+
     $http.get('main/getPropiedades').
     then(function (response) {
-        //console.log(data);
-        $scope.propiedades = response.data;
+        self.propiedades = response.data;
     }, function (err) {
         console.log(err);
-        // log error
     });
-});
 
-app.controller("getValorPropiedades", function ($scope, $http) {
     $http.get('main/getValorPropiedades').
     then(function (response) {
-        //console.log(data);
-        $scope.valores = response.data;
+        self.valores = response.data;
     }, function (err) {
         console.log(err);
-        // log error
     });
 });
 
+/*app.controller("getTipoItems", function ($scope, $http, $rootScope) {
+
+ });
+
+ app.controller("getPropiedades", function ($scope, $http) {
+
+ });
+
+ app.controller("getValorPropiedades", function ($scope, $http) {
+
+ });*/
