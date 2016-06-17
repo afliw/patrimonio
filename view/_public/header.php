@@ -12,7 +12,7 @@
 
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="js/class.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 	
 	<title><?php echo Header::getTitle() ?></title>
 

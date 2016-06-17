@@ -11,6 +11,10 @@ function index(){
 	View::Show();
 }
 
+function abm(){
+	View::Show(false);
+}
+
 function selectClaseItem(){
 	$itemClasses = Menu::GetItemClasses();
 	header('Content-Type: application/json');
