@@ -1,0 +1,26 @@
+{
+  "name": "patrimonio",
+  "homepage": "https://github.com/afliw/patrimonio",
+  "authors": [
+    "afliw@VM-PHP <aflivv@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.php",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.5.5",
+    "angular-messages": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular": "^1.5.5",
+    "jquery": "^2.2.3",
+    "angular-material": "^1.0.8",
+    "ng-table": "^0.8.3"
+  }
+}
