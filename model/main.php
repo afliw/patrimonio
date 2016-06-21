@@ -46,15 +46,15 @@ class Main {
   public static function GetItems($idClase){
     $result = SDB::Read("SELECT
               i.foto as `Foto`,
-              i.nro_expediente as `N° Expediente`,
+              i.nro_expediente as `Expediente`,
               i.decreto as `Decreto`,
-              --i.precio as `Precio`,
+              i.precio as `Precio`,
               i.comentarios as `Comentarios`,
               its.descripcion as `Sector`,
               ies.descripcion as `Estado`,
               ipa.dscripcion as `Partida`,
-              ici.descripcion as `Clase Item`,
-              iti.descripcion as `Tipo Item`
+              ici.descripcion as `ClaseItem`,
+              iti.descripcion as `TipoItem`
               FROM
               ite_item i
               INNER JOIN ite_sector its ON i.id_sector = its.id_sector

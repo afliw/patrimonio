@@ -1,9 +1,8 @@
-var app = angular.module("MyApp", []);
+var app = angular.module("MyApp", ['smart-table']);
 
 app.controller("getItems2", function ($scope, $http, $rootScope) {
     var gi2 = this;
     $rootScope.$on("itemClicked",function(event,id){
-        console.log(id);
         gi2.getItems(id);
     });
 
@@ -14,9 +13,10 @@ app.controller("getItems2", function ($scope, $http, $rootScope) {
                 e.Foto = "img/"+e.Foto;
             });
 
+
             $scope.items2 = [];
             $scope.items2 = response.data;
-
+            $scope.columns = Object.keys(response.data[0]);
 
         }, function (err) {
             console.log(err);

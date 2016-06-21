@@ -1,8 +1,12 @@
 <div class="page" ng-app="MyApp">
-	<header class="site-header">
+
+
+	<header class="site-header" >
+
 		<div ng-controller="GetItems as gi">
 			<nav class="site-navigation">
-				<ul>
+
+				<ul><!--<li><img ng-src="img/logo.png" alt="Description" width="100px" /></li>-->
 					<li ng-repeat="item in gi.items">
 						<a href="" ng-click="gi.itemClicked(item.id)">{{item.descripcion}}</a>
 					</li>
@@ -15,13 +19,13 @@
 
 		<div class="ac" ng-repeat="item in lsb.tipoItem">
 
-			<input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox"/>
+			<input class="ac-input" id="ac-{{item.id_tipo_item}}" name="ac-{{item.id_tipo_item}}" type="checkbox" checked/>
 			<label class="ac-label" for="ac-{{item.id_tipo_item}} ">{{item.descripcion}} - ({{item.Cantidad}})</label>
 
 			<article class="ac-text" ng-repeat="propiedad in lsb.propiedades" ng-if="propiedad.id_tipo_item == item.id_tipo_item">
 				<div class="ac-sub">
 					<input class="ac-input" id="acc-{{propiedad.id_propiedad}}" name="acc-{{propiedad.id_propiedad}}"
-					       type="checkbox"/>
+					       type="checkbox" checked/>
 					<label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
 					<article class="ac-sub-text" ng-repeat="valor in lsb.valores"
 					         ng-if="valor.id_propiedad == propiedad.id_propiedad" ng-model="level3">
@@ -33,31 +37,12 @@
 
 		</div>
 
-		<!--<div class="menu">
-		   <ul ng-repeat="item in tipoItem" ng-controller="getPropiedades">
-			   <li class="block">
-				   <input type="checkbox" name="item{{item.id_tipo_item}}" id="item{{item.id_tipo_item}}" />
-				   <label for="item{{item.id_tipo_item}}"><i aria-hidden="true" class="icon-users"></i> {{item.descripcion}} <span>{{item.Cantidad}}</span></label>
-				   <ul class="options" ng-repeat="propiedad in propiedades"  ng-if="propiedad.id_tipo_item == item.id_tipo_item" ng-controller="getValorPropiedades">
-					   <li>
-						   <a href="#"><i aria-hidden="true" class="icon-search"></i> {{propiedad.Propiedad}} </a>
-							   <ul  ng-repeat="valor in valores" ng-if="valor.id_propiedad == propiedad.id_propiedad">
-								   <li>
-									   <a href="#">{{valor.Valor}} - {{valor.Cantidad}} </a>
-								   </li>
-							   </ul>
-					   </li>
-				   </ul>
-			   </li>
-		   </ul>
-	   </div>-->
 
 	</aside>
 
 	<section class="main-content">
 
-
-		<div ng-controller="getItems2" style="overflow-x:auto;">
+		<div ng-controller="getItems2" class="table-responsive">
 
 			<form>
 				<div class="form-group">
@@ -69,25 +54,38 @@
 			</form>
 
 
-			<table class="table">
+			<table  st-table="items22" st-safe-src="items2" class="table">
 
 				<thead>
 				<tr>
-					<th ng-repeat="(key, value) in items2[0]">
-						{{key}}
+					<th ng-repeat="column in columns" st-sort="{{column}}">
+						{{column}}
 					</th>
 				</tr>
 				</thead>
 
 				<tbody>
-				<tr ng-repeat="item2 in items2 | filter:search">
+				<tr ng-repeat="item2 in items22 | filter:search">
 					<td ng-repeat="ite in item2">
 						<img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
 						<span ng-if="$index != 0 && $index !=3">{{ite}}</span>
 						<span ng-if="$index == 3">{{ite | currency}}</span>
 					</td>
+					<td>
+						<button type="button"  class="btn btn-sm btn-danger">
+							<i class="glyphicon glyphicon-remove-circle">
+							</i>
+						</button>
+					</td>
 				</tr>
 				</tbody>
+				<tfoot>
+				<tr>
+					<td colspan="5" class="text-center">
+						<div st-pagination="" st-items-by-page="10" st-displayed-pages="30"></div>
+					</td>
+				</tr>
+				</tfoot>
 
 			</table>
 
