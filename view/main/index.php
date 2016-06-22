@@ -1,12 +1,16 @@
-<div class="page" ng-app="MyApp">
+<div class="page" ng-app="MyApp" xmlns="http://www.w3.org/1999/html">
 
+
+	<header class="site-logo" >
+		<div>
+			<img ng-src="img/logo.png" alt="Description" width="100px"  />
+		</div>
+	</header>
 
 	<header class="site-header" >
-
 		<div ng-controller="GetItems as gi">
 			<nav class="site-navigation">
-
-				<ul><!--<li><img ng-src="img/logo.png" alt="Description" width="100px" /></li>-->
+				<ul>
 					<li ng-repeat="item in gi.items">
 						<a href="" ng-click="gi.itemClicked(item.id)">{{item.descripcion}}</a>
 					</li>
@@ -29,7 +33,7 @@
 					<label class="ac-label" for="acc-{{propiedad.id_propiedad}}">{{propiedad.Propiedad}}</label>
 					<article class="ac-sub-text" ng-repeat="valor in lsb.valores"
 					         ng-if="valor.id_propiedad == propiedad.id_propiedad" ng-model="level3">
-						{{valor.Valor}} - ({{valor.Cantidad}})
+						<input type="checkbox"> {{valor.Valor}} - ({{valor.Cantidad}})</input>
 					</article>
 				</div>
 
@@ -58,6 +62,7 @@
 
 				<thead>
 				<tr>
+					<th> </th>
 					<th ng-repeat="column in columns" st-sort="{{column}}">
 						{{column}}
 					</th>
@@ -66,16 +71,20 @@
 
 				<tbody>
 				<tr ng-repeat="item2 in items22 | filter:search">
+					<td>
+						<div class="btn-group-vertical">
+							<button type="button"  class="btn btn-sm btn-primary">
+								<i class="glyphicon glyphicon-edit"></i>
+							</button>
+							<button type="button"  class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-remove-circle"></i>
+							</button>
+						</div>
+					</td>
 					<td ng-repeat="ite in item2">
 						<img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
 						<span ng-if="$index != 0 && $index !=3">{{ite}}</span>
 						<span ng-if="$index == 3">{{ite | currency}}</span>
-					</td>
-					<td>
-						<button type="button"  class="btn btn-sm btn-danger">
-							<i class="glyphicon glyphicon-remove-circle">
-							</i>
-						</button>
 					</td>
 				</tr>
 				</tbody>
