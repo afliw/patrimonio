@@ -7,12 +7,13 @@
  */
 
 function index(){
-	Header::setTitle("Main");
+	Header::setTitle("Patrimonio");
 	View::Show();
 }
 
-function abm(){
-	View::Show(false);
+function login(){
+	Header::setTitle("Login");
+	View::Show();
 }
 
 function selectClaseItem(){

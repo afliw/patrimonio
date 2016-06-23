@@ -77,14 +77,3 @@ app.controller("leftSideMenu", function($http,$rootScope){
     });
 });
 
-/*app.controller("getTipoItems", function ($scope, $http, $rootScope) {
-
- });
-
- app.controller("getPropiedades", function ($scope, $http) {
-
- });
-
- app.controller("getValorPropiedades", function ($scope, $http) {
-
- });*/
