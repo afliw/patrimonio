@@ -45,26 +45,42 @@ class Main {
 
   public static function GetItems($idClase){
     $result = SDB::Read("SELECT
-              i.foto as `Foto`,
-              i.nro_expediente as `Expediente`,
-              i.decreto as `Decreto`,
-              i.precio as `Precio`,
-              i.comentarios as `Comentarios`,
-              its.descripcion as `Sector`,
-              ies.descripcion as `Estado`,
-              ipa.dscripcion as `Partida`,
-              ici.descripcion as `ClaseItem`,
-              iti.descripcion as `TipoItem`
-              FROM
-              ite_item i
-              INNER JOIN ite_sector its ON i.id_sector = its.id_sector
-              INNER JOIN ite_estado ies ON i.id_estado = ies.id_estado
-              INNER JOIN ite_partida ipa ON i.id_partida = ipa.id_partida
-              INNER JOIN ite_tipo_adquisicion ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
-              INNER JOIN ite_clase_item ici ON i.id_clase_item = ici.id_clase_item
-              INNER JOIN ite_tipo_item iti ON i.id_tipo_item = iti.id_tipo_item
-              WHERE i.id_clase_item = " . $idClase);
-    return $result;
+  GROUP_CONCAT(DISTINCT CONCAT(
+      'MAX(IF(itp.descripcion = ''',
+      itp.descripcion,
+      ''', itv.descripcion, NULL)) AS ',
+      itp.descripcion
+    )
+  ) as str
+FROM ite_item AS i
+INNER JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+INNER JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+INNER JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+INNER JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+INNER JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+WHERE i.id_clase_item = $idClase;");
+
+    $result1 = SDB::Read("SELECT  i.foto as `Foto`,
+									i.nro_expediente as `Expediente`,
+									i.decreto as `Decreto`,
+									i.precio as `Precio`,
+									i.comentarios as `Comentarios`,
+									its.descripcion as `Sector`,
+									ies.descripcion as `Estado`,
+									ipa.dscripcion as `Partida`, i.id_item, {$result[0]['str']}    FROM ite_item AS i
+									INNER JOIN ite_sector AS its ON i.id_sector = its.id_sector
+									INNER JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
+									INNER JOIN ite_partida AS ipa ON i.id_partida = ipa.id_partida
+									INNER JOIN ite_tipo_adquisicion AS ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
+									INNER JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+									INNER JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+									INNER JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+									INNER JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+									INNER JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+									WHERE i.id_clase_item = $idClase
+									GROUP BY id_item");
+
+    return $result1;
   }
 }
 

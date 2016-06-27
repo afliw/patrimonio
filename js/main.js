@@ -13,7 +13,6 @@ app.controller("getItems2", function ($scope, $http, $rootScope) {
                 e.Foto = "img/"+e.Foto;
             });
 
-
             $scope.items2 = [];
             $scope.items2 = response.data;
             $scope.columns = Object.keys(response.data[0]);
