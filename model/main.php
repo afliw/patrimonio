@@ -80,6 +80,46 @@ WHERE i.id_clase_item = $idClase;");
 									WHERE i.id_clase_item = $idClase
 									GROUP BY id_item");
 
+    $result1 = SDB::Read("SELECT  i.foto as `Foto`,
+i.nro_expediente as `Expediente`,
+i.decreto as `Decreto`,
+i.precio as `Precio`,
+i.comentarios as `Comentarios`,
+its.descripcion as `Sector`,
+ies.descripcion as `Estado`,
+ipa.dscripcion as `Partida`, i.id_item, {$result[0]['str']} FROM ite_item AS i
+LEFT JOIN ite_sector AS its ON i.id_sector = its.id_sector
+LEFT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
+LEFT JOIN ite_partida AS ipa ON i.id_partida = ipa.id_partida
+LEFT JOIN ite_tipo_adquisicion AS ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
+LEFT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+LEFT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+LEFT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+LEFT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+LEFT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+WHERE i.id_clase_item = $idClase
+GROUP BY id_item
+UNION ALL
+SELECT  i.foto as `Foto`,
+i.nro_expediente as `Expediente`,
+i.decreto as `Decreto`,
+i.precio as `Precio`,
+i.comentarios as `Comentarios`,
+its.descripcion as `Sector`,
+ies.descripcion as `Estado`,
+ipa.dscripcion as `Partida`, i.id_item, {$result[0]['str']}  FROM ite_item AS i
+RIGHT JOIN ite_sector AS its ON i.id_sector = its.id_sector
+RIGHT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
+RIGHT JOIN ite_partida AS ipa ON i.id_partida = ipa.id_partida
+RIGHT JOIN ite_tipo_adquisicion AS ita ON i.id_tipo_adquisicion = ita.id_tipo_adquisicion
+RIGHT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+RIGHT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+RIGHT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+RIGHT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+RIGHT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+WHERE i.id_clase_item = $idClase
+GROUP BY id_item");
+
     return $result1;
   }
 }
