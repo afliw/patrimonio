@@ -16,10 +16,10 @@ function login(){
 	View::Show();
 }
 
-function selectClaseItem(){
-	$itemClasses = Menu::GetItemClasses();
+function selectClases(){
+	$clases = Menu::GetClases();
 	header('Content-Type: application/json');
-	echo json_encode($itemClasses);
+	echo json_encode($clases);
 }
 
 function getTipoItems($idClase){
@@ -28,7 +28,7 @@ function getTipoItems($idClase){
 	echo json_encode($tiposItem);
 }
 
-function getItems2($idClase){
+function getItems($idClase){
 	$items = Main::GetItems($idClase);
 	header('Content-Type: application/json');
 	echo json_encode($items);

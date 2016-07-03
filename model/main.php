@@ -125,7 +125,7 @@ GROUP BY id_item");
 }
 
 class Menu {
-  public static function GetItemClasses(){
+  public static function GetClases(){
     $result = SDB::Read("SELECT id_clase_item as `id`,descripcion FROM ite_clase_item");
     return $result;
   }

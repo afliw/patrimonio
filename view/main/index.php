@@ -8,11 +8,11 @@
 	</header>
 
 	<header class="site-header" >
-		<div ng-controller="GetItems as gi">
+		<div ng-controller="getClases as cla">
 			<nav class="site-navigation">
 				<ul>
-					<li ng-repeat="item in gi.items">
-						<a href="" ng-click="gi.itemClicked(item.id)">{{item.descripcion}}</a>
+					<li ng-repeat="clase in cla.clases">
+						<a href="" ng-click="cla.claseClicked(clase.id)">{{clase.descripcion}}</a>
 					</li>
 				</ul>
 			</nav>
@@ -46,7 +46,7 @@
 
 	<section class="main-content">
 
-		<div ng-controller="getItems2" class="table-responsive">
+		<div ng-controller="getItems" class="table-responsive">
 
 			<form>
 				<div class="form-group">

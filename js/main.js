@@ -1,13 +1,13 @@
 var app = angular.module("MyApp", ['smart-table']);
 
-app.controller("getItems2", function ($scope, $http, $rootScope) {
+app.controller("getItems", function ($scope, $http, $rootScope) {
     var gi2 = this;
-    $rootScope.$on("itemClicked",function(event,id){
+    $rootScope.$on("claseClicked",function(event, id){
         gi2.getItems(id);
     });
 
     this.getItems = function(idClase){
-        $http.get('main/getItems2?idClase='+idClase).
+        $http.get('main/getItems?idClase='+idClase).
         then(function (response) {
             response.data.forEach(function(e){
                 e.Foto = "img/"+e.Foto;
@@ -25,14 +25,14 @@ app.controller("getItems2", function ($scope, $http, $rootScope) {
     this.getItems(1);
 });
 
-app.controller("GetItems", function ($rootScope, $http) {
-    var gi = this;
-    gi.itemClicked = function(id){
-        $rootScope.$broadcast("itemClicked",id);
+app.controller("getClases", function ($rootScope, $http) {
+    var cla = this;
+    cla.claseClicked = function(id){
+        $rootScope.$broadcast("claseClicked",id);
     };
-    $http.get('main/selectClaseItem').
+    $http.get('main/selectClases').
     then(function (response) {
-        gi.items = response.data;
+        cla.clases = response.data;
     }, function (err) {
         console.log(err);
         // log error
@@ -45,7 +45,7 @@ app.controller("leftSideMenu", function($http,$rootScope){
     this.valores = {};
     this.tipoItem = {};
 
-    $rootScope.$on("itemClicked",function(event,id){
+    $rootScope.$on("claseClicked",function(event, id){
         console.log(id);
         self.getTipoItems(id);
     });
