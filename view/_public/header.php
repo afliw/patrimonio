@@ -12,7 +12,6 @@
 
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="js/main.js"></script>
 	<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
 	
 	<title><?php echo Header::getTitle() ?></title>

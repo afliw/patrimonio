@@ -18,7 +18,8 @@ class Main {
     $result = SDB::Read("SELECT
         ip.descripcion AS Propiedad,
         ip.id_propiedad,
-        ip.id_tipo_item
+        ip.id_tipo_item,
+        ip.id_tipo_campo
         FROM
         ite_propiedad AS ip
         GROUP BY 1

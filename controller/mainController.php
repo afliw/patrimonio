@@ -16,6 +16,11 @@ function login(){
 	View::Show();
 }
 
+function abm_bien(){
+	Header::setTitle("ABM");
+	View::Show();
+}
+
 function selectClases(){
 	$clases = Menu::GetClases();
 	header('Content-Type: application/json');

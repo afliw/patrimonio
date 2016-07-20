@@ -1,5 +1,6 @@
-<div class="page" ng-app="MyApp" xmlns="http://www.w3.org/1999/html">
+<script src="js/main.js"></script>
 
+<div class="page" ng-app="MyApp" xmlns="http://www.w3.org/1999/html">
 
 	<header class="site-logo" >
 		<div>
@@ -40,7 +41,6 @@
 			</article>
 
 		</div>
-
 
 	</aside>
 
