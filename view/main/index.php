@@ -37,7 +37,6 @@
 						<input type="checkbox"> {{valor.Valor}} - ({{valor.Cantidad}})</input>
 					</article>
 				</div>
-
 			</article>
 
 		</div>

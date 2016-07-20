@@ -18,7 +18,7 @@
     </header>
 
     <div class="col-sm-8 col-sm-offset-2" ng-controller="leftSideMenu as lsb">
-        
+
         <!-- FORM -->
         <form name="userForm" ng-submit="submitForm()">
             <div class="form-group">
@@ -32,17 +32,19 @@
                <div ng-switch="propiedad.id_tipo_campo">
                     <div ng-switch-when="1">
                         <label>{{propiedad.Propiedad}}</label>
-                        <select  ng-model="opts" ng-options="valor.Valor for valor in lsb.valores">
+                        <select >
                             <option value="">Seleccione...</option>
+                            <option value="" ng-repeat= "valor in lsb.valores" ng-if="valor.id_propiedad == propiedad.id_propiedad">{{valor.Valor}} </option>
                         </select>
                     </div>
                    <div ng-switch-when="2">
                        <label>{{propiedad.Propiedad}}</label>
-                       <input type="text" name="username" class="form-control">
+                       <input type="text" name="username" class="form-control"></input>
                    </div>
                    <div ng-switch-when="3">
-                       <label ng-repeat="valor in lsb.valores">{{propiedad.Propiedad}}:</label>
-                       <input type="checkbox" name="check" class="form-control">{{valor.Valor}}
+                       <label>{{propiedad.Propiedad}}:</label>
+                       <input type="checkbox" value="" ng-repeat= "valor in lsb.valores" ng-if="valor.id_propiedad == propiedad.id_propiedad">{{valor.Valor}} </input>
+                       
                    </div>
                 </div>
             </div>
