@@ -1,4 +1,4 @@
-var app = angular.module("ABM", []);
+var app = angular.module("ABM", ['smart-table']);
 
 app.controller("getClases", function ($rootScope, $http) {
     var cla = this;
@@ -52,3 +52,27 @@ app.controller("leftSideMenu", function($http,$rootScope){
     });
 });
 
+app.controller("getItems", function ($scope, $http, $rootScope) {
+    var gi2 = this;
+    $rootScope.$on("claseClicked",function(event, id){
+        gi2.getItems(id);
+    });
+
+    this.getItems = function(idClase){
+        $http.get('main/getItems?idClase='+idClase).
+        then(function (response) {
+            response.data.forEach(function(e){
+                e.Foto = "img/"+e.Foto;
+            });
+
+            $scope.items2 = [];
+            $scope.items2 = response.data;
+            $scope.columns = Object.keys(response.data[0]);
+
+        }, function (err) {
+            console.log(err);
+            // log error
+        });
+    };
+    this.getItems(1);
+});
