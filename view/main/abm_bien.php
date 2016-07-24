@@ -1,18 +1,15 @@
 <script src="js/abm.js"></script>
+
 <link rel="stylesheet" href="css/abm.css">
 
 <div class="page" ng-app="ABM" xmlns="http://www.w3.org/1999/html">
 
     <div class="container">
 
-    <header >
-
-    </header>
-
-    <div class="col-sm-8 col-sm-offset-2" ng-controller="leftSideMenu as lsb">
-        <div class="form-group rcorners" >
+    <div class="col-sm-8 col-sm-offset-2" ng-controller="fixabm as lsb">
+       <div class="form-group rcorners" >
             <label>N° Expediente:</label>
-            <input type="text" name="nroexpe" class="form-control"></input>
+            <input type="text" name="expediente" class="form-control"</input>
             <label>Año:</label>
             <input type="text" name="anio" class="form-control"></input>
             <label>Decreto:</label>
@@ -63,7 +60,6 @@
                 </select>
             </div>
 
-
                 <div class="form-group rcorners">
                    <div ng-repeat="propiedad in lsb.propiedades"  ng-if="propiedad.id_tipo_item == selected"
                         ng-switch="propiedad.id_tipo_campo">
@@ -87,48 +83,46 @@
                     <label>Precio:</label>
                     <input type="text" name="username" class="form-control"></input>
                 </div>
-            <div  ng-controller="getItems" class="table-responsive">
 
-                <table  st-table="items22" st-safe-src="items2" class="table">
+                <div ng-controller="getItemsReduce" class="table-responsive">
+                     <table  st-table="items22" st-safe-src="items2" class="table">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="column in columns" st-sort="{{column}}">
+                                {{column}}
+                            </th>
+                        </tr>
+                        </thead>
 
-                <thead>
-                <tr>
-                    <th> </th>
-                    <th ng-repeat="column in columns" st-sort="{{column}}">
-                        {{column}}
-                    </th>
-                </tr>
-                </thead>
+                      <tbody>
+                             <tr ng-repeat="item2 in items22 | filter:search">
+                                 <td>
+                                     <div class="btn-group-vertical">
+                                        <button type="button"  class="btn btn-sm btn-primary">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-danger">
+                                            <i class="glyphicon glyphicon-remove-circle"></i>
+                                        </button>
+                                     </div>
+                                </td>
+                                <td ng-repeat="ite in item2">
+                                    <img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
+                                    <span ng-if="$index != 0 && $index !=3">{{ite}}</span>
+                                    <span ng-if="$index == 3">{{ite | currency}}</span>
+                                </td>
+                             </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="30"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
 
-                <tbody>
-                <tr ng-repeat="item2 in items22 | filter:search">
-                    <td>
-                        <div class="btn-group-vertical">
-                            <button type="button"  class="btn btn-sm btn-primary">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </button>
-                            <button type="button"  class="btn btn-sm btn-danger">
-                                <i class="glyphicon glyphicon-remove-circle"></i>
-                            </button>
-                        </div>
-                    </td>
-                    <td ng-repeat="ite in item2">
-                        <img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
-                        <span ng-if="$index != 0 && $index !=3">{{ite}}</span>
-                        <span ng-if="$index == 3">{{ite | currency}}</span>
-                    </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="30"></div>
-                    </td>
-                </tr>
-                </tfoot>
-
-            </table>
-            </div>
+                     </table>
+                </div>
             <button type="submit" class="btn btn-primary">Aceptar</button>
             <button type="submit" class="btn btn-primary">Cancelar</button>
         </form>

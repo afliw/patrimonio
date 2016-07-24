@@ -15,14 +15,13 @@ app.controller("getClases", function ($rootScope, $http) {
 });
 
 
-app.controller("leftSideMenu", function($http,$rootScope){
+app.controller("fixabm", function($http,$scope){
     var self = this;
     this.propiedades = {};
     this.valores = {};
     this.tipoItem = {};
 
-    $rootScope.$on("claseClicked",function(event, id){
-        console.log(id);
+    $scope.$on("claseClicked",function(event, id){
         self.getTipoItems(id);
     });
 
@@ -52,14 +51,15 @@ app.controller("leftSideMenu", function($http,$rootScope){
     });
 });
 
-app.controller("getItems", function ($scope, $http, $rootScope) {
-    var gi2 = this;
+app.controller("getItemsReduce", function ($scope, $http, $rootScope) {
+    var irs = this;
     $rootScope.$on("claseClicked",function(event, id){
-        gi2.getItems(id);
+        irs.getItemsReduce(id);
+        console.log(id);
     });
 
-    this.getItems = function(idClase){
-        $http.get('main/getItems?idClase='+idClase).
+    this.getItemsReduce = function(exp){
+        $http.get('main/getItemsReduce?nroExp='+exp).
         then(function (response) {
             response.data.forEach(function(e){
                 e.Foto = "img/"+e.Foto;
@@ -74,5 +74,5 @@ app.controller("getItems", function ($scope, $http, $rootScope) {
             // log error
         });
     };
-    this.getItems(1);
+    this.getItemsReduce(1);
 });

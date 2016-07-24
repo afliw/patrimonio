@@ -21,6 +21,11 @@ function abm_bien(){
 	View::Show();
 }
 
+function modal(){
+	Header::setTitle("modal");
+	View::Show();
+}
+
 function selectClases(){
 	$clases = Menu::GetClases();
 	header('Content-Type: application/json');
@@ -35,6 +40,12 @@ function getTipoItems($idClase){
 
 function getItems($idClase){
 	$items = Main::GetItems($idClase);
+	header('Content-Type: application/json');
+	echo json_encode($items);
+}
+
+function getItemsReduce($exp){
+	$items = Main::GetItemsReduce($exp);
 	header('Content-Type: application/json');
 	echo json_encode($items);
 }
