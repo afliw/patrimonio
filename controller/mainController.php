@@ -21,8 +21,8 @@ function abm_bien(){
 	View::Show();
 }
 
-function modal(){
-	Header::setTitle("modal");
+function abm(){
+	Header::setTitle("ABM Individual");
 	View::Show();
 }
 

@@ -17,6 +17,7 @@
 					</li>
 				</ul>
 			</nav>
+			<a class="site-navigation" id="link-6" ng-href="main/abm_bien">Nuevo Expediente</a>
 		</div>
 	</header>
 
