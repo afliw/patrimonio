@@ -69,7 +69,8 @@ i.precio as `Precio`,
 i.comentarios as `Comentarios`,
 its.descripcion as `Sector`,
 ies.descripcion as `Estado`,
-ipa.dscripcion as `Partida`, i.id_item, {$result[0]['str']} FROM ite_item AS i
+ipa.dscripcion as `Partida`, i.id_item, {$result[0]['str']}
+FROM ite_item AS i
 LEFT JOIN ite_sector AS its ON i.id_sector = its.id_sector
 LEFT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
 LEFT JOIN ite_partida AS ipa ON i.id_partida = ipa.id_partida

@@ -20,16 +20,18 @@ app.controller("getItems", function ($scope, $http, $rootScope) {
         gi2.getItems(id);
     });
 
+    this.filterId = function(field){
+        return field !== "id_item";
+    };
+
     this.getItems = function(idClase){
         $http.get('main/getItems?idClase='+idClase).
         then(function (response) {
             response.data.forEach(function(e){
                 e.Foto = "img/"+e.Foto;
             });
-
-            $scope.items2 = [];
-            $scope.items2 = response.data;
-            $scope.columns = Object.keys(response.data[0]);
+            $scope.items = response.data || [];
+            $scope.columns = Object.keys(response.data[0]).filter(gi2.filterId);
 
         }, function (err) {
             console.log(err);

@@ -59,7 +59,6 @@
 
 
 			<table  st-table="items22" st-safe-src="items2" class="table">
-
 				<thead>
 				<tr>
 					<th> </th>
@@ -68,9 +67,8 @@
 					</th>
 				</tr>
 				</thead>
-
 				<tbody>
-				<tr ng-repeat="item2 in items22 | filter:search">
+				<tr ng-repeat="item in items | filter:search">
 					<td>
 						<div class="btn-group-vertical">
 							<button type="button"  class="btn btn-sm btn-primary">
@@ -81,10 +79,10 @@
 							</button>
 						</div>
 					</td>
-					<td ng-repeat="ite in item2">
-						<img width="50px" ng-if="$index == 0" ng-src="{{ite}}" lazy-src/>
-						<span ng-if="$index != 0 && $index !=3">{{ite}}</span>
-						<span ng-if="$index == 3">{{ite | currency}}</span>
+					<td ng-repeat="(property, value) in item" ng-if="property !== 'id_item'">
+						<img width="50px" ng-if="$index == 0" ng-src="{{value}}" lazy-src/>
+						<span ng-if="$index != 0 && $index !=3">{{value}}</span>
+						<span ng-if="$index == 3">{{value | currency}}</span>
 					</td>
 				</tr>
 				</tbody>
@@ -95,13 +93,9 @@
 					</td>
 				</tr>
 				</tfoot>
-
 			</table>
-
 		</div>
-
 	</section>
-
 	<!--<aside class="right-sidebar">  </aside>-->
 	<footer class="site-footer"></footer>
 </div>
