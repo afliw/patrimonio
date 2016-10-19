@@ -1,4 +1,5 @@
-var app = angular.module("MyApp", ['smart-table']);
+/* global angular*/
+var app = angular.module("MyApp", ['ngMaterial','smart-table']);
 
 app.controller("getClases", function ($rootScope, $http) {
     var cla = this;
@@ -14,18 +15,45 @@ app.controller("getClases", function ($rootScope, $http) {
     });
 });
 
-app.controller("getItems", function ($scope, $http, $rootScope) {
+app.controller("getItems", function ($scope, $http, $rootScope, $mdDialog,$mdToast) {
     var gi2 = this;
+    this.currentIdClass = 1;
     $rootScope.$on("claseClicked",function(event, id){
-        gi2.getItems(id);
+        gi2.currentIdClass = id;
+        gi2.getItems();
     });
 
     this.filterId = function(field){
         return field !== "id_item";
     };
 
-    this.getItems = function(idClase){
-        $http.get('main/getItems?idClase='+idClase).
+    $scope.deleteItem = function(itemId){
+        var confirm = $mdDialog.confirm()
+            .title('Confirmar')
+            .textContent('¿Confirma que desea eliminar este elemento?')
+            .ariaLabel('Confirmar')
+            .ok('Eliminar')
+            .cancel('Cancelar');
+
+        $mdDialog.show(confirm).then(function() {
+            $http.get("main/borrarItem?id_item="+itemId).then(function(r){
+                if(r.data)
+                    $mdToast.show($mdToast.simple().textContent(r.data.message));
+                if(r.data.status)
+                    gi2.getItems();
+            }, function(err){
+                console.log(err);
+                $mdToast.show($mdToast.simple().textContent("Error de conexión."));
+            });
+
+        }, function() {
+            console.log("Cancel");
+            $mdToast.show($mdToast.simple().textContent('Maraco...'));
+        });
+    };
+
+    this.getItems = function(){
+        $http.get('main/getItems?idClase='+gi2.currentIdClass).
         then(function (response) {
             response.data.forEach(function(e){
                 e.Foto = "img/"+e.Foto;
@@ -38,7 +66,7 @@ app.controller("getItems", function ($scope, $http, $rootScope) {
             // log error
         });
     };
-    this.getItems(1);
+    this.getItems();
 });
 
 

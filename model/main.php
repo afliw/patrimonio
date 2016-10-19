@@ -9,7 +9,7 @@ class Main {
             FROM
             ite_item it
             INNER JOIN ite_tipo_item iti ON it.id_tipo_item = iti.id_tipo_item
-            WHERE it.id_clase_item = " . $idClase . "
+            WHERE it.id_clase_item = $idClase
             group by 2");
     return $result;
   }
@@ -107,48 +107,56 @@ GROUP BY id_item");
   }
 
 
-  public static function GetItemsReduce($exp){
-    $result = SDB::Read("SELECT
-  GROUP_CONCAT(DISTINCT CONCAT(
-      'MAX(IF(itp.descripcion = ''',
-      itp.descripcion,
-      ''', itv.descripcion, NULL)) AS ',
-      itp.descripcion
-    )
-     ) as str
-    FROM ite_item AS i
-    INNER JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
-    INNER JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
-    INNER JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
-    INNER JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
-    INNER JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
-    WHERE i.nro_expediente = 1000"); //"$exp;");
+	public static function GetItemsReduce($exp){
+		$result = SDB::Read("SELECT
+		GROUP_CONCAT(DISTINCT CONCAT(
+		  'MAX(IF(itp.descripcion = ''',
+		  itp.descripcion,
+		  ''', itv.descripcion, NULL)) AS ',
+		  itp.descripcion
+		)
+		 ) as str
+		FROM ite_item AS i
+		INNER JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+		INNER JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+		INNER JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+		INNER JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+		INNER JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+		WHERE i.nro_expediente = 1000"); //"$exp;");
 
-    $result1 = SDB::Read("SELECT    i.foto as `Foto`,
-                                    i.precio as `Precio`,  {$result[0]['str']}  , ies.descripcion as `Estado`, i.id_item FROM ite_item AS i
-                                    LEFT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
-                                    LEFT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
-                                    LEFT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
-                                    LEFT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
-                                    LEFT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
-                                    LEFT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
-                                    WHERE i.nro_expediente = 1000
-                                    GROUP BY id_item
-                                    UNION ALL
-                                    SELECT  i.foto as `Foto`,
-                                    i.precio as `Precio`,  {$result[0]['str']}  , ies.descripcion as `Estado`, i.id_item FROM ite_item AS i
-                                    RIGHT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
-                                    RIGHT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
-                                    RIGHT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
-                                    RIGHT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
-                                    RIGHT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
-                                    RIGHT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
-                                    WHERE i.nro_expediente = 1000
-                                    GROUP BY id_item");
+		$result1 = SDB::Read("SELECT    i.foto as `Foto`,
+		                                i.precio as `Precio`,  {$result[0]['str']}  , ies.descripcion as `Estado`, i.id_item FROM ite_item AS i
+		                                LEFT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
+		                                LEFT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+		                                LEFT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+		                                LEFT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+		                                LEFT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+		                                LEFT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+		                                WHERE i.nro_expediente = 1000
+		                                GROUP BY id_item
+		                                UNION ALL
+		                                SELECT  i.foto as `Foto`,
+		                                i.precio as `Precio`,  {$result[0]['str']}  , ies.descripcion as `Estado`, i.id_item FROM ite_item AS i
+		                                RIGHT JOIN ite_estado AS ies ON i.id_estado = ies.id_estado
+		                                RIGHT JOIN ite_clase_item AS ici ON i.id_clase_item = ici.id_clase_item
+		                                RIGHT JOIN ite_tipo_item AS iti ON i.id_tipo_item = iti.id_tipo_item
+		                                RIGHT JOIN aso_item_tprop AS aso ON aso.id_item = i.id_item
+		                                RIGHT JOIN ite_propiedad AS itp ON itp.id_tipo_item = iti.id_tipo_item AND aso.id_propiedad = itp.id_propiedad
+		                                RIGHT JOIN ite_valor_propiedad itv ON itv.id_propiedad = itp.id_propiedad AND aso.id_valor_propiedad = itv.id_valor_propiedad
+		                                WHERE i.nro_expediente = 1000
+		                                GROUP BY id_item");
 
 
-    return $result1;
-  }
+	return $result1;
+	}
+
+	public static function deleteItem($id_item){
+		$query = "DELETE FROM ite_item WHERE id_item = ?";
+		$res = SDB::EscWrite($query,array($id_item));
+		return $res;
+	}
+
+
 }
 
 class Menu {

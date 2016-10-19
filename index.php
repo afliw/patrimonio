@@ -12,6 +12,7 @@ include_once("class/trace.php");
 include_once("class/view.php");
 include_once("class/controller.php");
 include_once("class/header.php");
+include_once("class/util.php");
 include_once("class/debug.php");
 // Classes Includes END---------------------------------------------------------
 

@@ -13,7 +13,13 @@
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-	
+
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.js"></script>
+	<script src="bower_components/angular-material/angular-material.js"></script>
+
 	<title><?php echo Header::getTitle() ?></title>
 
 </head>

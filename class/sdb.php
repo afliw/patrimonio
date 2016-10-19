@@ -5,7 +5,10 @@
 	DB::Write("INSERT INTO client (name, lastname) VALUES ('Pablo','Perez')");
 */
 class SDB{
-	protected static $con,$initialized = false;
+	/** @var \PDO */
+	protected static $con;
+	protected static $initialized = false;
+	public static $LastError;
 
 	private static function initialize(){
 	    if(self::$initialized) return;
@@ -33,6 +36,54 @@ class SDB{
 	    self::initialize();
 		$STH = self::$con->prepare($query);
 		$result = $STH->execute();
+		return $result;
+	}
+
+	/**
+	 * @param string $query
+	 * @param array $data
+	 * @param int $arrayType
+	 * @param bool $debug
+	 * @return array|bool
+	 */
+	public static function EscRead($query, $data, $arrayType = PDO::FETCH_ASSOC, $debug = false){
+		self::initialize();
+		$STH = self::$con->prepare($query);
+		$result = $STH->execute($data);
+		if($debug){
+			print "<pre>";
+			$STH->debugDumpParams();
+			print "</pre>";
+			print "<pre>";
+			var_dump($data);
+			print "</pre>";
+		}
+		if($result){
+			return $STH->fetchAll($arrayType);
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * @param string $query
+	 * @param array $data
+	 * @param bool $debug
+	 * @return bool
+	 */
+	public static function EscWrite($query,$data, $debug = false){
+		self::initialize();
+		$STH = self::$con->prepare($query);
+		$result = $STH->execute($data);
+		self::$LastError = $STH->errorInfo();
+		if($debug){
+			print "<pre>";
+			$STH->debugDumpParams();
+			print "</pre>";
+			print "<pre>";
+			var_dump($data);
+			print "</pre>";
+		}
 		return $result;
 	}
 

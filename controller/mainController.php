@@ -62,3 +62,9 @@ function getValorPropiedades(){
 	echo json_encode($propertiesValues);
 }
 
+function borrarItem($id_item){
+	if (!isset($id_item) || !is_numeric($id_item)) JSONResponse::Set(false,"No hay ID o es incorrecto")->Send(true);
+	$res = Main::deleteItem($id_item);
+	JSONResponse::Set(!!$res, !!$res ? "Item borrado correctamente." : "Error al escribir en base de datos.")->Send();
+
+}

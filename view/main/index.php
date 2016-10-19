@@ -74,7 +74,7 @@
 							<button type="button"  class="btn btn-sm btn-primary">
 								<i class="glyphicon glyphicon-edit"></i>
 							</button>
-							<button type="button"  class="btn btn-sm btn-danger">
+							<button type="button"  class="btn btn-sm btn-danger" ng-click="deleteItem(item.id_item)">
 								<i class="glyphicon glyphicon-remove-circle"></i>
 							</button>
 						</div>

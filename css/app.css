@@ -299,3 +299,7 @@
 .st-sort-descent:before{
   content: '\25BC';
 }
+
+md-toast{
+    position: fixed!important;
+}
